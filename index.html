@@ -61,11 +61,34 @@
     }
 
     .section-label {
+      display: inline-block;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: var(--blue-700);
+      margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--slate-950);
+      line-height: 1.1;
+    }
+
+    .section-intro {
+      display: grid;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .section-intro {
+        grid-template-columns: 4fr 8fr;
+        gap: 2.5rem;
+        align-items: start;
+      }
     }
 
     .reveal {
@@ -439,7 +462,9 @@
     .micron-open-link:hover,
     .micron-open-link:focus-visible { color: var(--blue-800); }
 
-    .pillars { padding-bottom: 2.4rem; }
+    .pillars {
+      padding-bottom: 2.4rem;
+    }
     .pillars-grid {
       display: grid;
       gap: 1rem;
@@ -501,28 +526,11 @@
       color: var(--slate-600);
     }
 
-    .approach { padding: 4rem 0; }
+    .approach {
+      padding: 4rem 0;
+    }
     @media (min-width: 640px) { .approach { padding: 4.8rem 0; } }
 
-    .two-col {
-      display: grid;
-      gap: 1.8rem;
-    }
-    @media (min-width: 1024px) {
-      .two-col {
-        grid-template-columns: 4fr 8fr;
-        gap: 2.5rem;
-        align-items: start;
-      }
-    }
-
-    .approach h2 {
-      margin-top: 0.65rem;
-      font-size: clamp(1.75rem, 4vw, 3rem);
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      color: var(--slate-950);
-    }
     .approach-body {
       font-size: 1rem;
       line-height: 1.82;
@@ -585,14 +593,12 @@
     }
     @media (min-width: 640px) { .impact { padding: 5rem 0; } }
     @media (min-width: 1024px) { .impact { padding: 5.6rem 0; } }
-    .impact .section-label { color: #bfdbfe; }
-    .impact h2 {
-      margin-top: 0.75rem;
-      font-size: clamp(1.75rem, 4vw, 3rem);
-      font-weight: 600;
-      letter-spacing: -0.025em;
+
+    .impact .section-heading {
       color: var(--white);
     }
+    .impact .section-label { color: #bfdbfe; }
+
     .impact-body {
       font-size: 1rem;
       line-height: 1.82;
@@ -623,7 +629,9 @@
     }
     .outcome-card.visible { opacity: 1; transform: translateY(0); }
 
-    .collaborate { padding: 4rem 0 6rem; }
+    .collaborate {
+      padding: 4rem 0 6rem;
+    }
     @media (min-width: 640px) { .collaborate { padding: 4.8rem 0 6.5rem; } }
 
     .collab-card {
@@ -642,89 +650,81 @@
       .collab-card { padding: 3rem 2.8rem; }
     }
 
-    .collab-inner {
+    .collab-body {
       display: grid;
       gap: 1.5rem;
     }
     @media (min-width: 1024px) {
-      .collab-inner {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 2rem;
+      .collab-body {
+        grid-template-columns: 4fr 8fr;
+        gap: 2.5rem;
         align-items: start;
       }
     }
 
-    .collab-inner h2 {
-      margin-top: 0.7rem;
-      font-size: clamp(1.75rem, 4vw, 3rem);
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      color: var(--slate-950);
-    }
     .collab-desc {
-      margin-top: 1rem;
-      max-width: 44ch;
       font-size: 1rem;
       line-height: 1.82;
       color: var(--slate-600);
-      margin-bottom: 1.25rem;
+      max-width: 46ch;
+    }
+
+    .connect-links-wrap {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
     }
 
     .linkedin-grid {
       display: flex;
-      gap: 1rem;
+      gap: 0.85rem;
       flex-wrap: wrap;
-      margin-top: 1.25rem;
+      align-items: center;
     }
 
-    .linkedin-photo-link {
-      position: relative;
-      display: inline-block;
-      width: 88px;
-      height: 88px;
+    .linkedin-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1rem;
       border-radius: 9999px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(15,23,42,0.12);
-      border: 3px solid #ffffff;
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+      color: var(--slate-800);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      min-height: 46px;
     }
 
-    .linkedin-photo-link img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .linkedin-link:hover,
+    .linkedin-link:focus-visible {
+      transform: translateY(-1px);
+      border-color: var(--blue-200);
+      box-shadow: 0 10px 24px rgba(37,99,235,0.12);
     }
 
-    .linkedin-badge {
-      position: absolute;
-      right: -2px;
-      bottom: -2px;
-      width: 28px;
-      height: 28px;
+    .linkedin-link-icon {
+      width: 2rem;
+      height: 2rem;
       border-radius: 9999px;
       background: #0a66c2;
       color: white;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid white;
-      box-shadow: 0 4px 12px rgba(10,102,194,0.35);
+      flex-shrink: 0;
     }
 
-    .linkedin-badge svg {
-      width: 14px;
-      height: 14px;
+    .linkedin-link-icon svg {
+      width: 1rem;
+      height: 1rem;
       fill: currentColor;
     }
 
-    @media (min-width: 640px) {
-      .linkedin-photo-link {
-        width: 96px;
-        height: 96px;
-      }
-    }
-
     .contact-form-box {
+      margin-top: 1.5rem;
       border-radius: 1.35rem;
       border: 1px solid rgba(255,255,255,0.7);
       background: rgba(255,255,255,0.92);
@@ -948,10 +948,10 @@
 
   <section id="approach" class="approach" aria-labelledby="approach-heading">
     <div class="container">
-      <div class="two-col">
+      <div class="section-intro">
         <div class="reveal">
           <p class="section-label">The approach</p>
-          <h2 id="approach-heading">From lived experience to usable strategic insight</h2>
+          <h2 id="approach-heading" class="section-heading">From lived experience to usable strategic insight</h2>
         </div>
         <div class="reveal reveal-delay-1">
           <div class="approach-body">
@@ -980,10 +980,10 @@
 
   <section id="impact" class="impact" aria-labelledby="impact-heading">
     <div class="container">
-      <div class="two-col">
+      <div class="section-intro">
         <div class="reveal">
           <p class="section-label">Impact potential</p>
-          <h2 id="impact-heading">Built for relevance beyond a single study</h2>
+          <h2 id="impact-heading" class="section-heading">Built for relevance beyond a single study</h2>
         </div>
         <div class="reveal reveal-delay-1">
           <p class="impact-body">This work begins with South Asian communities in the UK, where questions of trust, access, prevention, family, and cultural context are especially important. But the broader opportunity is methodological: a reusable model for community-informed insight generation that can support healthcare strategy, participatory design, and future service innovation at greater scale.</p>
@@ -1002,62 +1002,61 @@
 
   <section id="collaborate" class="collaborate" aria-labelledby="collaborate-heading">
     <div class="container">
-      <div class="reveal">
-        <div class="collab-card">
-          <div class="collab-inner">
-            <div>
-              <p class="section-label">Collaboration</p>
-              <h2 id="collaborate-heading">Connect with us</h2>
-              <p class="collab-desc">We are interested in collaborating with NHS, public health, healthcare strategy, community engagement, design research, HCI, and digital health partners who can help extend, evaluate, apply, or support this method in real-world settings</p>
+      <div class="collab-card reveal">
+        <div class="section-intro">
+          <div>
+            <p class="section-label">Collaboration</p>
+            <h2 id="collaborate-heading" class="section-heading">Connect with us</h2>
+          </div>
+          <div>
+            <p class="collab-desc">We are interested in collaborating with NHS, public health, healthcare strategy, community engagement, design research, HCI, and digital health partners who can help extend, evaluate, apply, or support this method in real-world settings.</p>
+          </div>
+        </div>
 
-              <div class="linkedin-grid" aria-label="LinkedIn profiles">
-                <a
-                  class="linkedin-photo-link"
-                  href="https://www.linkedin.com/in/rafael-a-calvo/"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Open Professor Rafael Calvo LinkedIn profile"
-                >
-                  <img
-                    src="https://assets.clay.earth/api/images/avatars/optimized/MTE5OTgyMy0zOTk4MTU0MjE="
-                    alt="Professor Rafael Calvo"
-                  />
-                  <span class="linkedin-badge" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 12.68c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.38c.04.65 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.91 1.05 1.91 2.58V20h3.38v-7.32Z"/></svg>
-                  </span>
-                </a>
+        <div class="collab-body">
+          <div class="connect-links-wrap">
+            <div class="linkedin-grid" aria-label="LinkedIn profiles">
+              <a
+                class="linkedin-link"
+                href="https://www.linkedin.com/in/rafael-a-calvo/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open Professor Rafael Calvo LinkedIn profile"
+              >
+                <span class="linkedin-link-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 12.68c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.38c.04.65 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.91 1.05 1.91 2.58V20h3.38v-7.32Z"/></svg>
+                </span>
+                <span>Professor Rafael Calvo</span>
+              </a>
 
-                <a
-                  class="linkedin-photo-link"
-                  href="https://www.linkedin.com/in/haseen-ak-7bb716101/"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Open Dr Md Haseen Akhtar LinkedIn profile"
-                >
-                  <img
-                    src="YOUR-HASEEN-PHOTO-URL-HERE"
-                    alt="Dr Md Haseen Akhtar"
-                  />
-                  <span class="linkedin-badge" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 12.68c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.38c.04.65 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.91 1.05 1.91 2.58V20h3.38v-7.32Z"/></svg>
-                  </span>
-                </a>
-              </div>
+              <a
+                class="linkedin-link"
+                href="https://www.linkedin.com/in/haseen-ak-7bb716101/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open Dr Md Haseen Akhtar LinkedIn profile"
+              >
+                <span class="linkedin-link-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 12.68c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.38c.04.65 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.91 1.05 1.91 2.58V20h3.38v-7.32Z"/></svg>
+                </span>
+                <span>Dr Md Haseen Akhtar</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form-box">
+            <h3>Send us a message</h3>
+            <p>Edit the message below and open it in your email app.</p>
+
+            <div class="form-group">
+              <label for="email-subject" class="form-label">Subject</label>
+              <input id="email-subject" class="form-input" type="text" value="Collaboration enquiry" aria-describedby="subject-help" />
+              <div id="subject-help" class="sr-only">Edit the email subject before sending.</div>
             </div>
 
-            <div class="contact-form-box">
-              <h3>Send us a message</h3>
-              <p>Edit the message below and open it in your email app.</p>
-
-              <div class="form-group">
-                <label for="email-subject" class="form-label">Subject</label>
-                <input id="email-subject" class="form-input" type="text" value="Collaboration enquiry" aria-describedby="subject-help" />
-                <div id="subject-help" class="sr-only">Edit the email subject before sending.</div>
-              </div>
-
-              <div class="form-group">
-                <label for="email-body" class="form-label">Message</label>
-                <textarea id="email-body" class="form-textarea" aria-describedby="message-help">Dear Dr Md Haseen Akhtar and Professor Rafael Calvo,
+            <div class="form-group">
+              <label for="email-body" class="form-label">Message</label>
+              <textarea id="email-body" class="form-textarea" aria-describedby="message-help">Dear Dr Md Haseen Akhtar and Professor Rafael Calvo,
 
 I am getting in touch regarding micrON and your work on the future of healthcare.
 
@@ -1078,17 +1077,16 @@ What I would like to discuss:
 Best regards,
 [Your name]
 [Your organisation]</textarea>
-                <div id="message-help" class="sr-only">You can edit this pre-written email message before sending.</div>
-              </div>
-
-              <button id="send-email" class="btn-dark" type="button" aria-label="Open editable collaboration email in your default email app">
-                Send Email
-              </button>
-
-              <p class="contact-note">
-                This opens your email app addressed to Dr Md Haseen Akhtar and cc Professor Rafael Calvo.
-              </p>
+              <div id="message-help" class="sr-only">You can edit this pre-written email message before sending.</div>
             </div>
+
+            <button id="send-email" class="btn-dark" type="button" aria-label="Open editable collaboration email in your default email app">
+              Send Email
+            </button>
+
+            <p class="contact-note">
+              This opens your email app addressed to Dr Md Haseen Akhtar and cc Professor Rafael Calvo.
+            </p>
           </div>
         </div>
       </div>
