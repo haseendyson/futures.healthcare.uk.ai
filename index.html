@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversational Care for Future Healthcare</title>
+  <meta name="description" content="A conversational AI method for inclusive healthcare futures—designed for collaborators, funders, and partners interested in culturally responsive engagement, research, and service innovation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-50: #eff6ff;
+      --blue-100: #dbeafe;
+      --blue-200: #bfdbfe;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-800: #1e40af;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-950: #020617;
+      --white: #ffffff;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html { font-family: var(--font); background: var(--slate-50); color: var(--slate-950); }
+    body { overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Utilities ── */
+    .container {
+      width: 100%; max-width: 1280px;
+      margin-left: auto; margin-right: auto;
+      padding-left: 1.5rem; padding-right: 1.5rem;
+    }
+    @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--blue-700);
+    }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+
+    /* ── Background glows ── */
+    main {
+      position: relative; min-height: 100vh;
+      background: linear-gradient(to bottom, #f8fbff, #f8fafc 35%, #f8fafc);
+    }
+    main::before, main::after { content: ''; position: fixed; pointer-events: none; z-index: -1; border-radius: 9999px; }
+    main::before { left: -8rem; top: 12rem; width: 18rem; height: 18rem; background: rgba(125,211,252,0.10); filter: blur(3rem); }
+    main::after  { right: -6rem; top: 24rem; width: 20rem; height: 20rem; background: rgba(59,130,246,0.10); filter: blur(3rem); }
+
+    /* ── Header ── */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 5rem;
+    }
+    .logo { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-dot {
+      width: 2.5rem; height: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px;
+      background: rgba(37,99,235,0.10);
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.15);
+    }
+    .logo-dot span {
+      display: block; width: 0.625rem; height: 0.625rem;
+      border-radius: 9999px; background: var(--blue-600);
+    }
+    .logo-name { font-size: 0.875rem; font-weight: 600; letter-spacing: -0.02em; color: var(--slate-950); }
+    .logo-sub  { font-size: 0.75rem; color: var(--slate-500); }
+
+    nav.desktop-nav { display: none; align-items: center; gap: 2rem; }
+    @media (min-width: 768px) { nav.desktop-nav { display: flex; } }
+    nav.desktop-nav a { font-size: 0.875rem; font-weight: 500; color: var(--slate-600); transition: color 0.15s; }
+    nav.desktop-nav a:hover { color: var(--slate-950); }
+
+    .header-ctas { display: none; align-items: center; gap: 0.75rem; }
+    @media (min-width: 768px) { .header-ctas { display: flex; } }
+
+    .btn-outline {
+      display: inline-flex; align-items: center;
+      border: 1px solid var(--slate-200); background: var(--white);
+      padding: 0.5rem 1rem; border-radius: 9999px;
+      font-size: 0.875rem; font-weight: 500; color: var(--slate-700);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--slate-300); background: var(--slate-50); }
+
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--slate-950);
+      padding: 0.5rem 1rem; border-radius: 9999px;
+      font-size: 0.875rem; font-weight: 500; color: var(--white);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      transition: background 0.15s;
+    }
+    .btn-dark:hover { background: var(--slate-800); }
+
+    /* hamburger */
+    .hamburger {
+      display: flex; align-items: center; justify-content: center;
+      width: 2.5rem; height: 2.5rem; border-radius: 9999px;
+      border: 1px solid var(--slate-200); background: var(--white);
+      color: var(--slate-700); cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .hamburger svg { width: 1.25rem; height: 1.25rem; }
+    @media (min-width: 768px) { .hamburger { display: none; } }
+
+    /* mobile menu */
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 0.75rem;
+      padding: 1rem 0 1rem;
+      border-top: 1px solid var(--slate-100);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { padding: 0.5rem 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--slate-700); border-radius: 0.75rem; }
+    .mobile-menu .mobile-ctas { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+    .mobile-menu .btn-outline, .mobile-menu .btn-dark { justify-content: center; padding: 0.75rem 1.5rem; }
+
+    /* ── Hero ── */
+    .hero { position: relative; padding: 4rem 0; }
+    @media (min-width: 640px) { .hero { padding: 5rem 0; } }
+    @media (min-width: 1024px) { .hero { padding: 6rem 0; } }
+
+    .hero-grid {
+      display: grid; gap: 3rem; align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 7fr 5fr; gap: 3.5rem; }
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center;
+      border: 1px solid rgba(37,99,235,0.3); background: var(--blue-50);
+      padding: 0.25rem 0.75rem; border-radius: 9999px;
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em; color: var(--blue-700);
+    }
+
+    h1 {
+      margin-top: 1.5rem;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 600; letter-spacing: -0.03em;
+      line-height: 1.02; color: var(--slate-950);
+      max-width: 22ch;
+    }
+
+    .hero-desc {
+      margin-top: 1.5rem; max-width: 44ch;
+      font-size: 1.0625rem; line-height: 1.8; color: var(--slate-600);
+    }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+
+    .btn-blue {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--blue-600); border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem; font-weight: 600; color: var(--white);
+      box-shadow: 0 10px 30px rgba(37,99,235,0.22);
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-blue:hover { background: var(--blue-700); }
+    .btn-blue:hover svg { transform: translateX(2px); }
+    .btn-blue svg { transition: transform 0.15s; width: 1rem; height: 1rem; }
+
+    .btn-outline-lg {
+      display: inline-flex; align-items: center;
+      border: 1px solid var(--slate-200); background: var(--white);
+      padding: 0.75rem 1.5rem; border-radius: 9999px;
+      font-size: 0.875rem; font-weight: 600; color: var(--slate-700);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-outline-lg:hover { border-color: var(--slate-300); background: var(--slate-50); }
+
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;
+    }
+    .chip {
+      border: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.85);
+      padding: 0.5rem 1rem; border-radius: 9999px;
+      font-size: 0.875rem; color: var(--slate-600);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      backdrop-filter: blur(8px);
+      opacity: 0; transform: translateY(16px);
+      animation: chip-in 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .chip:nth-child(1) { animation-delay: 0.15s; }
+    .chip:nth-child(2) { animation-delay: 0.25s; }
+    .chip:nth-child(3) { animation-delay: 0.35s; }
+    @keyframes chip-in { to { opacity: 1; transform: translateY(0); } }
+
+    /* ── Investment card ── */
+    .invest-card {
+      position: relative; overflow: hidden;
+      border-radius: 2rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.85);
+      padding: 1.75rem;
+      box-shadow: 0 20px 60px rgba(15,23,42,0.08);
+      backdrop-filter: blur(20px);
+    }
+    .invest-card::before {
+      content: ''; position: absolute; right: 0; top: 0;
+      width: 8rem; height: 8rem; border-radius: 9999px;
+      background: rgba(59,130,246,0.10); filter: blur(2rem);
+    }
+    .invest-card-label { font-size: 0.875rem; font-weight: 500; color: var(--slate-500); position: relative; }
+    .invest-row {
+      position: relative; padding-bottom: 1.25rem; margin-top: 1.5rem;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .invest-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .invest-row-label { font-size: 0.875rem; color: var(--slate-500); }
+    .invest-row-value { margin-top: 0.25rem; font-size: 1rem; font-weight: 600; color: var(--slate-950); line-height: 1.5; }
+
+    /* ── Opportunity pillars ── */
+    .pillars { padding-bottom: 2rem; }
+    .pillars-grid { display: grid; gap: 1rem; }
+    @media (min-width: 768px) { .pillars-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .pillar-card {
+      border-radius: 1.75rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.85);
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.05);
+      backdrop-filter: blur(8px);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .pillar-card.visible { opacity: 1; transform: translateY(0); }
+
+    .pillar-icon {
+      width: 2.75rem; height: 2.75rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; background: var(--blue-50);
+      color: var(--blue-700);
+      box-shadow: 0 0 0 1px var(--blue-100);
+    }
+    .pillar-icon svg { width: 1.25rem; height: 1.25rem; }
+    .pillar-title { margin-top: 1.25rem; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; color: var(--slate-950); }
+    .pillar-text  { margin-top: 0.75rem; font-size: 1rem; line-height: 1.8; color: var(--slate-600); }
+
+    /* ── Approach ── */
+    .approach { padding: 4rem 0; }
+    @media (min-width: 640px) { .approach { padding: 5rem 0; } }
+
+    .two-col { display: grid; gap: 2.5rem; }
+    @media (min-width: 1024px) { .two-col { grid-template-columns: 5fr 7fr; gap: 3.5rem; align-items: start; } }
+
+    .approach h2 {
+      margin-top: 0.75rem;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 600; letter-spacing: -0.025em; color: var(--slate-950);
+    }
+    .approach-body { font-size: 1rem; line-height: 1.85; color: var(--slate-600); }
+    .approach-body p + p { margin-top: 1.5rem; }
+
+    .approach-steps { display: grid; gap: 1rem; margin-top: 2rem; }
+    @media (min-width: 640px) { .approach-steps { grid-template-columns: repeat(3, 1fr); } }
+
+    .approach-step {
+      border: 1px solid var(--slate-200); background: var(--white);
+      padding: 1.25rem; border-radius: 1.35rem;
+      font-size: 0.875rem; font-weight: 500; color: var(--slate-800);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      opacity: 0; transform: translateY(12px) scale(0.98);
+      transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .approach-step.visible { opacity: 1; transform: translateY(0) scale(1); }
+
+    /* ── Impact ── */
+    .impact {
+      background: linear-gradient(180deg, #0f172a, #111827);
+      padding: 4rem 0;
+    }
+    @media (min-width: 640px) { .impact { padding: 5rem 0; } }
+    @media (min-width: 1024px) { .impact { padding: 6rem 0; } }
+
+    .impact .section-label { color: #bfdbfe; }
+    .impact h2 {
+      margin-top: 0.75rem;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 600; letter-spacing: -0.025em; color: var(--white);
+    }
+    .impact-body { font-size: 1rem; line-height: 1.85; color: #cbd5e1; }
+
+    .outcomes-grid { display: grid; gap: 0.75rem; margin-top: 2rem; }
+    @media (min-width: 640px) { .outcomes-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .outcome-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      padding: 1rem 1rem;
+      font-size: 0.875rem; line-height: 1.75; color: #e2e8f0;
+      backdrop-filter: blur(8px);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .outcome-card.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Collaborate ── */
+    .collaborate { padding: 4rem 0 6rem; }
+    @media (min-width: 640px) { .collaborate { padding: 5rem 0 7rem; } }
+
+    .collab-card {
+      position: relative; overflow: hidden;
+      border-radius: 2rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      background: linear-gradient(135deg, #ffffff, #eff6ff);
+      padding: 3rem 1.5rem;
+      box-shadow: 0 20px 60px rgba(15,23,42,0.08);
+    }
+    @media (min-width: 640px) { .collab-card { padding: 3.5rem 2.5rem; } }
+    @media (min-width: 1024px) { .collab-card { padding: 3.5rem 3.5rem; } }
+    .collab-card::before {
+      content: ''; position: absolute; right: -4rem; top: -4rem;
+      width: 10rem; height: 10rem; border-radius: 9999px;
+      background: rgba(59,130,246,0.10); filter: blur(3rem);
+    }
+
+    .collab-inner { position: relative; display: grid; gap: 2.5rem; }
+    @media (min-width: 1024px) { .collab-inner { grid-template-columns: 7fr 5fr; align-items: start; } }
+
+    .collab-inner h2 {
+      margin-top: 0.75rem;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 600; letter-spacing: -0.025em; color: var(--slate-950);
+    }
+    .collab-desc { margin-top: 1.25rem; max-width: 44ch; font-size: 1rem; line-height: 1.85; color: var(--slate-600); }
+    .collab-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+
+    /* Partner box */
+    .partner-box {
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.85);
+      padding: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      backdrop-filter: blur(8px);
+    }
+    .partner-box-header { display: flex; align-items: center; gap: 0.75rem; }
+    .partner-icon {
+      width: 2.5rem; height: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px; background: var(--blue-50);
+      color: var(--blue-700);
+      box-shadow: 0 0 0 1px var(--blue-100);
+      flex-shrink: 0;
+    }
+    .partner-icon svg { width: 1.25rem; height: 1.25rem; }
+    .partner-header-label { font-size: 0.875rem; font-weight: 500; color: var(--slate-500); }
+
+    .partner-list { display: grid; gap: 0.75rem; margin-top: 1.25rem; }
+    .partner-item {
+      border-radius: 0.75rem;
+      border: 1px solid var(--slate-100); background: var(--slate-50);
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem; color: var(--slate-700);
+      opacity: 0; transform: translateX(10px);
+      transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .partner-item.visible { opacity: 1; transform: translateX(0); }
+
+    .contact-block {
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--slate-100);
+      font-size: 0.875rem; line-height: 1.75; color: var(--slate-500);
+    }
+    .contact-block .name { font-weight: 600; color: var(--slate-900); }
+    .contact-block p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+<main>
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <div class="logo-dot"><span></span></div>
+        <div>
+          <p class="logo-name">Conversational Care</p>
+          <p class="logo-sub">Imperial College London</p>
+        </div>
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="#opportunity">Opportunity</a>
+        <a href="#approach">Approach</a>
+        <a href="#impact">Impact</a>
+        <a href="#collaborate">Collaborate</a>
+      </nav>
+
+      <div class="header-ctas">
+        <a href="mailto:m.akhtar1@imperial.ac.uk?subject=Project%20summary%20request" class="btn-outline">Request Summary</a>
+        <a href="#collaborate" class="btn-dark">Collaborate</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" /></svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="container">
+        <a href="#opportunity" class="mobile-link">Opportunity</a>
+        <a href="#approach"    class="mobile-link">Approach</a>
+        <a href="#impact"      class="mobile-link">Impact</a>
+        <a href="#collaborate" class="mobile-link">Collaborate</a>
+        <div class="mobile-ctas">
+          <a href="mailto:m.akhtar1@imperial.ac.uk?subject=Project%20summary%20request" class="btn-outline">Request Summary</a>
+          <a href="#collaborate" class="btn-dark mobile-link">Collaborate</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="reveal" id="hero-left">
+          <span class="hero-badge">Research · Design · Healthcare Innovation</span>
+          <h1>A conversational AI method for more inclusive healthcare futures</h1>
+          <p class="hero-desc">We are developing a culturally responsive micro-narrative approach that helps communities reflect on healthcare experiences, articulate future priorities, and generate richer insight for research, service design, and innovation.</p>
+          <div class="hero-ctas">
+            <a href="#collaborate" class="btn-blue">
+              Partner With Us
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </a>
+            <a href="mailto:m.akhtar1@imperial.ac.uk?subject=Project%20summary%20request" class="btn-outline-lg">Request Project Summary</a>
+          </div>
+          <div class="chips">
+            <span class="chip">Imperial College London</span>
+            <span class="chip">Conversational AI + Micro-Narratives</span>
+            <span class="chip">Healthcare Futures Research</span>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1" id="hero-right">
+          <div class="invest-card">
+            <p class="invest-card-label">Investment case</p>
+            <div class="invest-row">
+              <p class="invest-row-label">Problem</p>
+              <p class="invest-row-value">Community insight is often shallow, fragmented, or hard to scale</p>
+            </div>
+            <div class="invest-row">
+              <p class="invest-row-label">Innovation</p>
+              <p class="invest-row-value">Conversational micro-narratives with participant-reviewed AI synthesis</p>
+            </div>
+            <div class="invest-row">
+              <p class="invest-row-label">Initial context</p>
+              <p class="invest-row-value">South Asian communities in the UK</p>
+            </div>
+            <div class="invest-row">
+              <p class="invest-row-label">Potential value</p>
+              <p class="invest-row-value">Better engagement, stronger design insight, and broader applicability across health and public sector settings</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OPPORTUNITY (PILLARS) ── -->
+  <section id="opportunity" class="pillars">
+    <div class="container">
+      <div class="pillars-grid">
+
+        <div class="pillar-card" data-delay="0">
+          <div class="pillar-icon">
+            <!-- brain icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
+          </div>
+          <h2 class="pillar-title">Why this matters now</h2>
+          <p class="pillar-text">Healthcare organisations need better ways to understand what communities value, trust, and want from future care. Existing engagement methods often miss the reflective, nuanced, and culturally grounded perspectives that shape real-world healthcare decisions.</p>
+        </div>
+
+        <div class="pillar-card" data-delay="80">
+          <div class="pillar-icon">
+            <!-- sparkles icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" /></svg>
+          </div>
+          <h2 class="pillar-title">What this project does</h2>
+          <p class="pillar-text">We are developing a conversational micro-narrative method that uses AI to support reflective storytelling, generate narrative summaries, and allow participant review—helping preserve voice, ownership, and depth while improving scalability.</p>
+        </div>
+
+        <div class="pillar-card" data-delay="160">
+          <div class="pillar-icon">
+            <!-- shield check icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+          </div>
+          <h2 class="pillar-title">Why it is promising</h2>
+          <p class="pillar-text">The approach combines qualitative richness with a more structured, repeatable workflow, creating potential value for inclusive service design, public engagement, health research, and innovation across diverse communities.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── APPROACH ── -->
+  <section id="approach" class="approach">
+    <div class="container">
+      <div class="two-col">
+        <div class="reveal">
+          <p class="section-label">The approach</p>
+          <h2>From lived experience to usable strategic insight</h2>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="approach-body">
+            <p>The method combines structured conversational prompting, narrative synthesis, and participant review. Rather than relying only on fixed-response instruments or resource-heavy interviews, it creates a more scalable way to gather reflective, story-based insight without losing participant perspective.</p>
+            <p>The result is a workflow that can support richer qualitative engagement while remaining practical for research, design, and innovation contexts where trust, nuance, and cultural responsiveness matter.</p>
+          </div>
+          <div class="approach-steps">
+            <div class="approach-step" data-delay="0">Elicit reflection</div>
+            <div class="approach-step" data-delay="80">Synthesize narratives</div>
+            <div class="approach-step" data-delay="160">Preserve participant voice</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IMPACT ── -->
+  <section id="impact" class="impact">
+    <div class="container">
+      <div class="two-col">
+        <div class="reveal">
+          <p class="section-label">Impact potential</p>
+          <h2>Built for relevance beyond a single study</h2>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <p class="impact-body">This work begins with South Asian communities in the UK, where questions of trust, access, prevention, family, and cultural context are especially important. But the broader opportunity is methodological: a reusable model for community-informed insight generation that can support healthcare strategy, participatory design, and future service innovation at greater scale.</p>
+          <div class="outcomes-grid">
+            <div class="outcome-card" data-delay="0">A more inclusive model of community engagement</div>
+            <div class="outcome-card" data-delay="50">Culturally responsive healthcare and service design insight</div>
+            <div class="outcome-card" data-delay="100">A scalable qualitative method for public sector and health research</div>
+            <div class="outcome-card" data-delay="150">A stronger bridge between lived experience and innovation</div>
+            <div class="outcome-card" data-delay="200">A platform for future cross-context and cross-cultural studies</div>
+            <div class="outcome-card" data-delay="250">Practical relevance for prevention, trust, access, and community wellbeing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COLLABORATE ── -->
+  <section id="collaborate" class="collaborate">
+    <div class="container">
+      <div class="reveal">
+        <div class="collab-card">
+          <div class="collab-inner">
+            <div>
+              <p class="section-label">Collaboration</p>
+              <h2>We're looking for collaborators, implementation partners, and funders</h2>
+              <p class="collab-desc">We are interested in partnerships that can help extend, evaluate, apply, or support this method across healthcare, public sector, and community engagement settings.</p>
+              <div class="collab-ctas">
+                <a href="mailto:m.akhtar1@imperial.ac.uk?subject=Collaboration%20enquiry" class="btn-dark">
+                  Contact the Team
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:1rem;height:1rem;margin-left:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                </a>
+                <a href="mailto:m.akhtar1@imperial.ac.uk?subject=Funding%20conversation" class="btn-outline-lg">Discuss Funding</a>
+              </div>
+            </div>
+
+            <div class="partner-box">
+              <div class="partner-box-header">
+                <div class="partner-icon">
+                  <!-- handshake icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" /></svg>
+                </div>
+                <p class="partner-header-label">We'd like to connect with</p>
+              </div>
+              <div class="partner-list">
+                <div class="partner-item" data-delay="0">Funders backing inclusive AI, digital health, or health innovation</div>
+                <div class="partner-item" data-delay="50">NHS, public health, and healthcare strategy partners</div>
+                <div class="partner-item" data-delay="100">Community organisations and engagement networks</div>
+                <div class="partner-item" data-delay="150">Design research, HCI, and digital health collaborators</div>
+                <div class="partner-item" data-delay="200">Institutions interested in piloting or extending the method</div>
+              </div>
+              <div class="contact-block">
+                <p><span class="name">Dr Mohammad Haseen Akhtar</span><br>m.akhtar1@imperial.ac.uk</p>
+                <p><span class="name">Professor Rafael Calvo</span><br>r.calvo@imperial.ac.uk</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconMenu  = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    iconMenu.style.display  = isOpen ? 'none'  : '';
+    iconClose.style.display = isOpen ? ''      : 'none';
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(el => {
+    el.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      iconMenu.style.display  = '';
+      iconClose.style.display = 'none';
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Intersection observer for .reveal elements
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Staggered card observers
+  function staggerObserve(selector) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const delay = parseInt(e.target.dataset.delay || 0);
+          setTimeout(() => e.target.classList.add('visible'), delay);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(selector).forEach(el => obs.observe(el));
+  }
+
+  staggerObserve('.pillar-card');
+  staggerObserve('.approach-step');
+  staggerObserve('.outcome-card');
+  staggerObserve('.partner-item');
+
+  // Reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal, .pillar-card, .approach-step, .outcome-card, .partner-item, .chip').forEach(el => {
+      el.style.transition = 'none';
+      el.style.animation  = 'none';
+      el.style.opacity    = '1';
+      el.style.transform  = 'none';
+    });
+  }
+</script>
+</body>
+</html>
