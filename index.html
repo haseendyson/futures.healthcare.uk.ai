@@ -732,48 +732,58 @@
       justify-content: flex-start;
     }
 
-    .linkedin-grid {
-      display: flex;
-      gap: 0.85rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
+   .team-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+}
 
-    .linkedin-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.75rem 1rem;
-      border-radius: 9999px;
-      background: #ffffff;
-      border: 1px solid var(--slate-200);
-      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
-      color: var(--slate-800);
-      font-size: 0.92rem;
-      font-weight: 600;
-      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
-      min-height: 46px;
-    }
+.team-card{
+    background:#fff;
+    border:1px solid var(--slate-200);
+    border-radius:1.5rem;
+    padding:1.5rem;
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+    display:flex;
+    flex-direction:column;
+}
 
-    .linkedin-link:hover,
-    .linkedin-link:focus-visible {
-      transform: translateY(-1px);
-      border-color: var(--blue-200);
-      box-shadow: 0 10px 24px rgba(37,99,235,0.12);
-    }
+.team-card h3{
+    font-size:1rem;
+    font-weight:700;
+    color:var(--blue-700);
+    margin-bottom:1.2rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+}
 
-    .linkedin-link-icon {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 9999px;
-      background: #0a66c2;
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+.person{
+    margin-bottom:1.6rem;
+}
 
+.person:last-child{
+    margin-bottom:0;
+}
+
+.person-name{
+    font-size:1rem;
+    font-weight:700;
+    color:var(--slate-900);
+    margin-bottom:.4rem;
+}
+
+.person-role{
+    font-size:.85rem;
+    line-height:1.6;
+    color:var(--slate-500);
+    margin-bottom:.8rem;
+}
+
+.person-divider{
+    margin:1.3rem 0;
+    border:none;
+    border-top:1px solid var(--slate-200);
+}
     .linkedin-link-icon svg {
       width: 1rem;
       height: 1rem;
@@ -1068,7 +1078,7 @@
         <div class="section-intro">
           <div>
             <p class="section-label">Collaboration</p>
-            <h2 id="collaborate-heading" class="section-heading">Connect with us</h2>
+            <h2 id="collaborate-heading" class="section-heading">Project Team</h2>
           </div>
           <div class="collab-desc-box">
             We are interested in collaborating with NHS, public health, healthcare strategy, community engagement, design research, HCI, and digital health partners who can help extend, evaluate, apply, or support this method in real-world settings.
@@ -1077,55 +1087,173 @@
 
         <div class="collab-body">
           <div class="connect-links-wrap">
-            <div class="linkedin-grid" aria-label="LinkedIn profiles">
-              <a
-                class="linkedin-link"
-                href="https://www.linkedin.com/in/rafael-a-calvo/"
-                target="_blank"
-                rel="noopener"
-                aria-label="Open Professor Rafael Calvo LinkedIn profile"
-              >
-                <span class="linkedin-link-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 12.68c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.38c.04.65 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.91 1.05 1.91 2.58V20h3.38v-7.32Z"/></svg>
-                </span>
-               <span>
-                  Professor Rafael Calvo
-                  <span style="display:block;font-size:0.78rem;font-weight:400;color:var(--slate-500);margin-top:0.1rem;">Chair in Engineering Design, Dyson School of Design Engineering, Imperial College London</span>
-                </span>
-              </a>
+            <div class="team-grid">
 
-              <a
-                class="linkedin-link"
-                href="https://www.linkedin.com/in/haseen-ak-7bb716101/"
-                target="_blank"
-                rel="noopener"
-                aria-label="Open Dr Md Haseen Akhtar LinkedIn profile"
-              >
-                <span class="linkedin-link-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 12.68c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.38c.04.65 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.91 1.05 1.91 2.58V20h3.38v-7.32Z"/></svg>
-                </span>
-                <span>
-                  Dr Md Haseen Akhtar
-                  <span style="display:block;font-size:0.78rem;font-weight:400;color:var(--slate-500);margin-top:0.1rem;">Visiting Researcher, Dyson School of Design Engineering, Imperial College London</span>
-                </span>
-              </a>
-              <a
-                class="linkedin-link"
-                href="https://www.linkedin.com/in/chriszbutler/"
-                target="_blank"
-                rel="noopener"
-                aria-label="Open Dr Christopher Butler LinkedIn profile"
-              >
-                <span class="linkedin-link-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 12.68c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.38c.04.65 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.91 1.05 1.91 2.58V20h3.38v-7.32Z"/></svg>
-                </span>
-                <span>
-                  Dr Christopher Butler
-                  <span style="display:block;font-size:0.78rem;font-weight:400;color:var(--slate-500);margin-top:0.1rem;">Associate Professor in Chronic and Complex Diseases, Imperial College London &amp; The George Institute for Global Health</span>
-                </span>
-              </a>
+    <!-- UK -->
+
+    <div class="team-card">
+
+        <h3>UK Team</h3>
+
+        <div class="person">
+
+            <div class="person-name">
+                Professor Rafael Calvo
             </div>
-          </div>
+
+            <div class="person-role">
+                <strong>Principal Investigator</strong><br>
+                Imperial India Connect Fund Project
+                <br><br>
+
+                Chair in Engineering Design<br>
+                Dyson School of Design Engineering<br>
+                Imperial College London
+            </div>
+
+            <a class="linkedin-link"
+               href="https://www.linkedin.com/in/rafael-a-calvo/"
+               target="_blank">
+
+                <span class="linkedin-link-icon">
+                    <!-- keep same LinkedIn SVG -->
+                </span>
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- INDIA -->
+
+    <div class="team-card">
+
+        <h3>India Team</h3>
+
+        <div class="person">
+
+            <div class="person-name">
+                A/Prof Md Haseen Akhtar
+            </div>
+
+            <div class="person-role">
+
+                <strong>Co-Principal Investigator</strong><br>
+                Imperial India Connect Fund Project
+
+                <br><br>
+
+                Visiting Researcher<br>
+                Dyson School of Design Engineering<br>
+                Imperial College London
+
+                <br><br>
+
+                Assistant Professor<br>
+                Department of Design<br>
+                IIT Hyderabad
+
+            </div>
+
+            <a class="linkedin-link"
+               href="https://www.linkedin.com/in/haseen-ak-7bb716101/"
+               target="_blank">
+
+                <span class="linkedin-link-icon">
+                    <!-- same SVG -->
+                </span>
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Collaborators -->
+
+    <div class="team-card">
+
+        <h3>Collaborators</h3>
+
+        <div class="person">
+
+            <div class="person-name">
+                A/Prof Christopher Butler
+            </div>
+
+            <div class="person-role">
+
+                Associate Professor in Chronic and Complex Diseases
+
+                <br><br>
+
+                Dyson School of Design Engineering<br>
+                Imperial College London
+
+                <br><br>
+
+                The George Institute for Global Health
+
+            </div>
+
+            <a class="linkedin-link"
+               href="https://www.linkedin.com/in/chriszbutler/"
+               target="_blank">
+
+                <span class="linkedin-link-icon">
+                    <!-- same SVG -->
+                </span>
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+        <hr class="person-divider">
+
+        <div class="person">
+
+            <div class="person-name">
+                A/Prof Dorian Peters
+            </div>
+
+            <div class="person-role">
+
+                Institute for Technology and Humanity
+
+                <br>
+
+                University of Cambridge
+
+            </div>
+
+            <a class="linkedin-link"
+               href="https://www.linkedin.com/in/dorian-peters/"
+               target="_blank">
+
+                <span class="linkedin-link-icon">
+                    <!-- same SVG -->
+                </span>
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
           <div class="contact-form-box">
             <h3>Send us a message</h3>
@@ -1168,7 +1296,7 @@ Best regards,
             </button>
 
             <p class="contact-note">
-              This opens your email app addressed to Dr Md Haseen Akhtar and cc Prof. Rafael and Dr. Chris.
+              This opens your email app addressed to A/Prof Md Haseen Akhtar and copies the project leadership team.
             </p>
           </div>
         </div>
