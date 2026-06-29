@@ -683,17 +683,19 @@
       .collab-card { padding: 3rem 2.8rem; }
     }
 
-    .collab-body {
-      display: grid;
-      gap: 1.5rem;
+    .collab-body{
+    display:grid;
+    gap:2rem;
+}
+
+@media (min-width:1024px){
+
+    .collab-body{
+        grid-template-columns:2fr 1fr;
+        align-items:stretch;
+        gap:2rem;
     }
-    @media (min-width: 1024px) {
-      .collab-body {
-        grid-template-columns: 4fr 8fr;
-        gap: 2.5rem;
-        align-items: start;
-      }
-    }
+}
 
     .collab-desc {
       font-size: 1rem;
@@ -726,16 +728,29 @@
       pointer-events: none;
     }
 
-    .connect-links-wrap {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
+    .connect-links-wrap{
+    display:flex;
+    height:100%;
+}
 
-   .team-grid{
+.team-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(3,1fr);
     gap:1.5rem;
+
+    width:100%;
+    height:100%;
+}
+    .team-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
+
+    height:100%;
+}
+
+.contact-form-box{
+    height:100%;
 }
 
 .team-card{
@@ -744,8 +759,14 @@
     border-radius:1.5rem;
     padding:1.5rem;
     box-shadow:0 8px 24px rgba(15,23,42,.06);
+
     display:flex;
     flex-direction:column;
+
+    height:100%;
+}
+    .team-grid > .team-card{
+    align-self:stretch;
 }
 
 .team-card h3{
