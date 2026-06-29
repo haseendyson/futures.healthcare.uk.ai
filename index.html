@@ -587,9 +587,33 @@
       color: var(--slate-700);
     }
 
-    .impact {
-      background: linear-gradient(180deg, #0f172a, #111827);
+   .impact {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
       padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .impact::before {
+      content: '';
+      position: absolute;
+      top: -6rem;
+      right: -6rem;
+      width: 28rem;
+      height: 28rem;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .impact::after {
+      content: '';
+      position: absolute;
+      bottom: -4rem;
+      left: -4rem;
+      width: 22rem;
+      height: 22rem;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%);
+      pointer-events: none;
     }
     @media (min-width: 640px) { .impact { padding: 5rem 0; } }
     @media (min-width: 1024px) { .impact { padding: 5.6rem 0; } }
@@ -597,12 +621,18 @@
     .impact .section-heading {
       color: var(--white);
     }
-    .impact .section-label { color: #bfdbfe; }
+    .impact .section-label {
+      color: #a5b4fc;
+      background: rgba(99,102,241,0.15);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(99,102,241,0.25);
+    }
 
     .impact-body {
       font-size: 1rem;
       line-height: 1.82;
-      color: #cbd5e1;
+      color: #94a3b8;
     }
     .outcomes-grid {
       display: grid;
@@ -616,9 +646,10 @@
     }
     .outcome-card {
       border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.05);
-      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 3px solid rgba(99,102,241,0.6);
+      background: rgba(255,255,255,0.04);
+      padding: 1rem 1.1rem;
       font-size: 0.9rem;
       line-height: 1.72;
       color: #e2e8f0;
@@ -628,6 +659,8 @@
       transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1);
     }
     .outcome-card.visible { opacity: 1; transform: translateY(0); }
+    .outcome-card:nth-child(odd) { border-left-color: rgba(99,102,241,0.6); }
+    .outcome-card:nth-child(even) { border-left-color: rgba(59,130,246,0.6); }
 
     .collaborate {
       padding: 4rem 0 6rem;
