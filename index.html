@@ -155,20 +155,9 @@
     .logo-dot {
       width: 3.35rem;
       height: 3.35rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 9999px;
-      background: rgba(37,99,235,0.10);
-      box-shadow: 0 0 0 1px rgba(37,99,235,0.15);
-      flex-shrink: 0;
-    }
-    .logo-dot span {
       display: block;
-      width: 0.95rem;
-      height: 0.95rem;
-      border-radius: 9999px;
-      background: var(--blue-600);
+      object-fit: contain;
+      flex-shrink: 0;
     }
     .logo-name {
       font-size: 1.32rem;
@@ -180,7 +169,6 @@
     @media (max-width: 480px) {
       .logo-name { font-size: 1.05rem; }
       .logo-dot { width: 2.85rem; height: 2.85rem; }
-      .logo-dot span { width: 0.78rem; height: 0.78rem; }
     }
 
     nav.desktop-nav {
@@ -1015,7 +1003,7 @@
   <header>
     <div class="container header-inner">
       <a href="#" class="logo" aria-label="micrON home">
-        <div class="logo-dot" aria-hidden="true"><span></span></div>
+        <img src="site-logo.png" alt="" class="logo-dot" aria-hidden="true" />
         <p class="logo-name">Shared Futures for AI in Healthcare</p>
       </a>
 
@@ -1440,9 +1428,9 @@
 
             <div class="form-group">
               <label for="email-body" class="form-label">Message</label>
-              <textarea id="email-body" class="form-textarea" aria-describedby="message-help">Hi Shared Futures Team,
+              <textarea id="email-body" class="form-textarea" aria-describedby="message-help">Hi MicrON Team,
 
-I am getting in touch regarding your work on the future of healthcare.
+I am getting in touch regarding micrON and your work on the future of healthcare.
 
 I am interested in exploring a potential collaboration related to:
 
