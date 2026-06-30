@@ -324,34 +324,37 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      margin-bottom: 1.1rem;
+      gap: 2.4rem;
+      margin-bottom: 1.3rem;
     }
     .partner-logo {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 4.4rem;
-      width: 11.2rem;
+      flex: 0 0 auto;
+      height: 2.5rem;
       filter: grayscale(100%);
       opacity: 0.7;
       transition: opacity 0.2s ease;
-    }
-    .partner-logo.partner-logo--cambridge {
-      height: 5.5rem;
-      width: 14rem;
-    }
-    .partner-logo.partner-logo--iit {
-      height: 3.3rem;
-      width: 8.4rem;
     }
     .partner-logo:hover {
       opacity: 1;
     }
     .partner-logo img {
       height: 100%;
-      width: 100%;
+      width: auto;
+      max-width: 100%;
       object-fit: contain;
       display: block;
+    }
+    .partner-logo.partner-logo--cambridge {
+      height: 3.1rem;
+    }
+    .partner-logo.partner-logo--iit {
+      height: 2.1rem;
+    }
+    .partner-logo.partner-logo--george {
+      height: 2.9rem;
     }
 
     .hero {
@@ -998,7 +1001,7 @@
             <span class="partner-logo partner-logo--iit">
               <img src="iit-hyderabad-logo.png" alt="IIT Hyderabad" loading="lazy" />
             </span>
-            <span class="partner-logo">
+            <span class="partner-logo partner-logo--george">
               <img src="george-institute-logo.svg" alt="The George Institute for Global Health" loading="lazy" />
             </span>
           </div>
