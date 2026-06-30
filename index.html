@@ -319,6 +319,34 @@
       line-height: 1.3;
     }
 
+    .partner-logos-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem 3rem;
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--slate-100);
+    }
+    .partner-logo {
+      display: flex;
+      align-items: center;
+      filter: grayscale(100%);
+      opacity: 0.65;
+      transition: opacity 0.2s ease;
+    }
+    .partner-logo:hover {
+      opacity: 1;
+    }
+    .partner-logo img {
+      height: 1.7rem;
+      width: auto;
+      max-width: 9rem;
+      object-fit: contain;
+      display: block;
+    }
+
     .hero {
       position: relative;
       padding: 3.4rem 0 3rem;
@@ -684,13 +712,19 @@
     }
 
     .collab-body{
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+}
+
+    .collab-row-2{
     display:grid;
     gap:2rem;
 }
 
 @media (min-width:1024px){
 
-    .collab-body{
+    .collab-row-2{
         grid-template-columns:2fr 1fr;
         align-items:stretch;
         gap:2rem;
@@ -728,25 +762,12 @@
       pointer-events: none;
     }
 
-    .connect-links-wrap{
-    display:flex;
-    height:100%;
-}
-
 .team-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:1.5rem;
 
     width:100%;
-    height:100%;
-}
-    .team-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:1.5rem;
-
-    height:100%;
 }
 
 .contact-form-box{
@@ -953,6 +974,20 @@
         <div class="collab-divider" aria-hidden="true"></div>
         <div class="inst-name">Imperial India Connect Fund</div>
       </div>
+      <div class="partner-logos-row" aria-label="Partner institutions">
+        <span class="partner-logo">
+          <img src="imperial-logo.png" alt="Imperial College London" loading="lazy" />
+        </span>
+        <span class="partner-logo">
+          <img src="cambridge-logo.png" alt="University of Cambridge" loading="lazy" />
+        </span>
+        <span class="partner-logo">
+          <img src="iit-hyderabad-logo.png" alt="IIT Hyderabad" loading="lazy" />
+        </span>
+        <span class="partner-logo">
+          <img src="george-institute-logo.svg" alt="The George Institute for Global Health" loading="lazy" />
+        </span>
+      </div>
     </div>
   </div>
 
@@ -982,7 +1017,6 @@
          <div class="micron-card" style="padding:0;overflow:hidden;">
             <img src="a.png" alt="Person using the micrON app on a smartphone" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:1.7rem 1.7rem 0 0;" />
             <p style="padding:1.2rem 1.4rem 1.4rem;font-size:0.95rem;line-height:1.75;color:var(--slate-500);font-style:italic;letter-spacing:-0.01em;">A conversational tool that helps you reflect on healthcare experiences and articulate what matters most for the future.</p>
-          </div>
           </div>
         </div>
       </div>
@@ -1101,13 +1135,9 @@
             <p class="section-label">Collaboration</p>
             <h2 id="collaborate-heading" class="section-heading">Project Team</h2>
           </div>
-          <div class="collab-desc-box">
-            We are interested in collaborating with NHS, public health, healthcare strategy, community engagement, design research, HCI, and digital health partners who can help extend, evaluate, apply, or support this method in real-world settings.
-          </div>
         </div>
 
         <div class="collab-body">
-          <div class="connect-links-wrap">
             <div class="team-grid">
 
     <!-- UK -->
@@ -1138,6 +1168,39 @@
 
                 <span class="linkedin-link-icon">
                     <!-- keep same LinkedIn SVG -->
+                </span>
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+        <hr class="person-divider">
+
+        <div class="person">
+
+            <div class="person-name">
+                A/Prof Dorian Peters
+            </div>
+
+            <div class="person-role">
+
+                Assistant Professor<br>
+                Institute for Technology and Humanity
+
+                <br><br>
+
+                University of Cambridge
+
+            </div>
+
+            <a class="linkedin-link"
+               href="https://www.linkedin.com/in/dorian-peters/"
+               target="_blank">
+
+                <span class="linkedin-link-icon">
+                    <!-- same SVG -->
                 </span>
 
                 LinkedIn
@@ -1217,7 +1280,6 @@
 
                 <br><br>
 
-                Dyson School of Design Engineering<br>
                 Imperial College London
 
                 <br><br>
@@ -1240,43 +1302,16 @@
 
         </div>
 
-        <hr class="person-divider">
-
-        <div class="person">
-
-            <div class="person-name">
-                A/Prof Dorian Peters
-            </div>
-
-            <div class="person-role">
-
-                Institute for Technology and Humanity
-
-                <br>
-
-                University of Cambridge
-
-            </div>
-
-            <a class="linkedin-link"
-               href="https://www.linkedin.com/in/dorian-peters/"
-               target="_blank">
-
-                <span class="linkedin-link-icon">
-                    <!-- same SVG -->
-                </span>
-
-                LinkedIn
-
-            </a>
-
-        </div>
-
     </div>
 
-</div>
+            </div>
 
-          <div class="contact-form-box">
+            <div class="collab-row-2">
+              <div class="collab-desc-box">
+                We are interested in collaborating with NHS, public health, healthcare strategy, community engagement, design research, HCI, and digital health partners who can help extend, evaluate, apply, or support this method in real-world settings.
+              </div>
+
+              <div class="contact-form-box">
             <h3>Send us a message</h3>
             <p>Edit the message below and open it in your email app.</p>
 
@@ -1319,7 +1354,8 @@ Best regards,
             <p class="contact-note">
               This opens your email app addressed to A/Prof Md Haseen Akhtar and copies the project leadership team.
             </p>
-          </div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
