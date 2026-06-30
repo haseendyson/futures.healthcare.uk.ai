@@ -1536,8 +1536,8 @@ Best regards,
   const emailBody = document.getElementById('email-body');
 
   sendEmailBtn.addEventListener('click', () => {
-    const to = 'm.akhtar1@imperial.ac.uk';
-    const cc = 'r.calvo@imperial.ac.uk,christopher.butler@imperial.ac.uk';
+    const to = 'm.akhtar1@imperial.ac.uk,haseen@des.iith.ac.in';
+    const cc = 'r.calvo@imperial.ac.uk,dp605@cam.ac.uk,christopher.butler@imperial.ac.uk';
     const subject = encodeURIComponent(emailSubject.value);
     const body = encodeURIComponent(emailBody.value);
     window.location.href = `mailto:${to}?cc=${cc}&subject=${subject}&body=${body}`;
